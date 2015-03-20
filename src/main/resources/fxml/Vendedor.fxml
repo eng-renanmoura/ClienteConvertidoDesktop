@@ -10,7 +10,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eng.renan.clienteconvertidodesktop.controller.VendedorController">
+<GridPane id="GridPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eng.renan.clienteconvertidodesktop.controller.VendedorController">
     <stylesheets>
         <URL value="@/styles/vendedor.css"/>
     </stylesheets>
