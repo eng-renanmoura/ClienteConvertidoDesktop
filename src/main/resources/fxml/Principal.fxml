@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox id="vbox" prefHeight="400" prefWidth="800"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.eng.renan.clienteconvertidodesktop.controller.PrincipalController">
+   <MenuBar fx:id="menuBar" >
+      <menus>
+         <Menu text="Venda">
+            <items>
+               <MenuItem text="Lançar Venda"  onAction="#handleAboutAction"/>
+               <MenuItem text="Próximo Vendedor"  onAction="#handleAboutAction"/>
+               <MenuItem text="Relatório"  onAction="#handleAboutAction"/>
+               <SeparatorMenuItem  />
+               <MenuItem text="Exit"  onAction="#handleAboutAction"/>
+            </items>
+         </Menu>
+         <Menu text="Cadastro">
+            <items>
+               <MenuItem text="Loja"  onAction="#handleLojaAction"/>
+               <MenuItem text="Produto"  onAction="#handleProdutoAction"/>
+               <MenuItem text="Vendedor"  onAction="#handleVendedorAction"/>
+            </items>
+         </Menu>
+         <Menu text="Help">
+            <items>
+               <MenuItem text="Search" disable="true"/>
+               <SeparatorMenuItem />
+               <MenuItem text="Sobre" onAction="#handleAboutAction"/>
+            </items>
+         </Menu>
+      </menus>
+   </MenuBar>
+</VBox>
