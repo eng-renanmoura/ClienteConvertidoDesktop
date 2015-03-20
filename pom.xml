@@ -20,12 +20,7 @@
     </organization>
 
     <dependencies>
-        <dependency>
-             <groupId>net.sf.jasperreports</groupId>
-             <artifactId>jasperreports</artifactId>
-             <version>5.6.0</version>
-        </dependency>
-        
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -37,13 +32,7 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.3.1.Final</version>
         </dependency>
-        
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>4.3.1.Final</version>
-        </dependency>
- 
+
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
@@ -53,17 +42,16 @@
         
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
-            <artifactId>eclipselink</artifactId>
-            <version>2.5.2</version>
+            <artifactId>javax.persistence</artifactId>
+            <version>2.1.0</version>
         </dependency>
-        
+
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
-            <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
-            <version>2.5.2</version>
-            <scope>provided</scope>
+            <artifactId>eclipselink</artifactId>
+            <version>2.6.0</version>
         </dependency>
-        <!--
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -87,7 +75,7 @@
             <artifactId>log4j</artifactId>
             <version>1.2.16</version>
         </dependency>
-        -->
+        
     </dependencies>
 
     <build>
