@@ -6,15 +6,29 @@ package com.eng.renan.clienteconvertidodesktop.controller;
  * and open the template in the editor.
  */
 
+import com.eng.renan.clienteconvertidodesktop.dao.VendedorDao;
+import com.eng.renan.clienteconvertidodesktop.modelo.Vendedor;
 import java.awt.event.InputEvent;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -24,9 +38,12 @@ import javafx.stage.Stage;
  */
 public class PrincipalController implements Initializable {
 
-@FXML
+  @FXML
   private MenuBar menuBar;
 
+  @FXML private TableView<Vendedor> tableView;
+  @FXML private TableColumn<Vendedor, String> VendedorNome;
+  @FXML private TableColumn<Vendedor, String> VendedorAtivo;
   /**
    * Handle action related to "About" menu item.
    * 
@@ -77,7 +94,21 @@ public class PrincipalController implements Initializable {
   @FXML
   private void handleAboutAction(final ActionEvent event)
   throws Exception{
-     provideAboutFunctionality();
+      Stage stage = new Stage();
+     Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+        
+     Scene scene = new Scene(root);
+     scene.getStylesheets().add("/styles/Styles.css");
+        
+     stage.setTitle("Teste");
+     stage.setScene(scene);
+     stage.show();
+  }
+  
+  @FXML
+   private void handleVendaAction(final ActionEvent event) throws Exception{
+     
+        provideVendaFunctionality();
   }
 
   /**
@@ -95,10 +126,10 @@ public class PrincipalController implements Initializable {
   /**
    * Perform functionality associated with "About" menu selection or CTRL-A.
    */
-  private void provideAboutFunctionality()
+  private void provideVendaFunctionality()
   throws Exception {
      Stage stage = new Stage();
-     Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+     Parent root = FXMLLoader.load(getClass().getResource("/fxml/Venda.fxml"));
         
      Scene scene = new Scene(root);
      scene.getStylesheets().add("/styles/Styles.css");
@@ -113,7 +144,53 @@ public class PrincipalController implements Initializable {
  @Override
  public void initialize(java.net.URL arg0, ResourceBundle arg1) {
    menuBar.setFocusTraversable(true);
+  
+   VendedorNome.setCellValueFactory(new PropertyValueFactory<Vendedor, String>("nome"));
+   VendedorAtivo.setCellValueFactory(new PropertyValueFactory<Vendedor, String>("id"));
+
+   tableView.getItems().setAll(parseVendedorList());
    
+   tableView.setOnMouseClicked(new EventHandler<MouseEvent>(){
+       @Override 
+        public void handle(MouseEvent event) {
+        if (event.getClickCount() == 2) {
+            Node node = ((Node) event.getTarget()).getParent();
+            TableRow row;
+            if (node instanceof TableRow) {
+                row = (TableRow) node;
+            } else {
+                // clicking on text part
+                row = (TableRow) node.getParent();
+            }
+            
+            Vendedor v = (Vendedor) row.getItem();
+            System.out.println(v.getNome());
+            try {
+                provideVendaFunctionality();
+            } catch (Exception ex) {
+                Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+   });
+   
+   tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Vendedor>() {
+
+    @Override
+    public void changed(ObservableValue<? extends Vendedor> observable,
+        Vendedor oldValue, Vendedor newValue) {
+        try {
+            provideVendaFunctionality();
+        } catch (Exception ex) {
+            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+  });
  }   
+ 
+  private List<Vendedor> parseVendedorList(){
+        VendedorDao vendedorDao = new VendedorDao();
+        return vendedorDao.listaTodos();
+ }
 
 }
