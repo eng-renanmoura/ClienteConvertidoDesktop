@@ -13,8 +13,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,8 +24,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -153,39 +154,23 @@ public class PrincipalController implements Initializable {
    tableView.setOnMouseClicked(new EventHandler<MouseEvent>(){
        @Override 
         public void handle(MouseEvent event) {
-        if (event.getClickCount() == 2) {
-            Node node = ((Node) event.getTarget()).getParent();
-            TableRow row;
-            if (node instanceof TableRow) {
-                row = (TableRow) node;
-            } else {
-                // clicking on text part
-                row = (TableRow) node.getParent();
-            }
-            
-            Vendedor v = (Vendedor) row.getItem();
-            System.out.println(v.getNome());
-            try {
-                provideVendaFunctionality();
-            } catch (Exception ex) {
-                Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-   });
-   
-   tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Vendedor>() {
+            Vendedor vendedor;
+            if (event.getClickCount() == 2) {
+                if(tableView.getSelectionModel().getSelectedItem() != null) {    
+                    TableViewSelectionModel selectionModel = tableView.getSelectionModel();
 
-    @Override
-    public void changed(ObservableValue<? extends Vendedor> observable,
-        Vendedor oldValue, Vendedor newValue) {
-        try {
-            provideVendaFunctionality();
-        } catch (Exception ex) {
-            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+                    vendedor = (Vendedor) selectionModel.getSelectedItem();
+                    System.out.println(vendedor.getNome());
+                }
+                try {
+                    provideVendaFunctionality();
+                } catch (Exception ex) {
+                    Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
-    }
-  });
+    });
+  
  }   
  
   private List<Vendedor> parseVendedorList(){
