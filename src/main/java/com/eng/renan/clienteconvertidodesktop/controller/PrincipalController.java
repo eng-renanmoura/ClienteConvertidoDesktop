@@ -13,19 +13,15 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -135,7 +131,7 @@ public class PrincipalController implements Initializable {
      Scene scene = new Scene(root);
      scene.getStylesheets().add("/styles/Styles.css");
         
-     stage.setTitle("Teste");
+     stage.setTitle("Lançar Venda");
      stage.setScene(scene);
      stage.show();
         
@@ -161,12 +157,15 @@ public class PrincipalController implements Initializable {
 
                     vendedor = (Vendedor) selectionModel.getSelectedItem();
                     System.out.println(vendedor.getNome());
+                    
+                    try {
+                        provideVendaFunctionality();
+                    } catch (Exception ex) {
+                        Logger.getLogger(PrincipalController.class.getName())
+                                .log(Level.SEVERE, null, ex);
+                    }
                 }
-                try {
-                    provideVendaFunctionality();
-                } catch (Exception ex) {
-                    Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
             }
         }
     });

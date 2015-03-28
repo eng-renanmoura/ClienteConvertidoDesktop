@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.eng.renan.clienteconvertidodesktop.controller.ItemController">
+    <stylesheets>
+        <URL value="@/styles/itemvenda.css" />
+    </stylesheets>
+    <children>
+       <Label layoutX="9.0" layoutY="8.0" text="Produto:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    
+        <ComboBox fx:id="itemProduto" layoutX="94.0" layoutY="3.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    
+       <Label layoutX="9.0" layoutY="39.0" text="Quantidade: " GridPane.rowIndex="3" />
+   
+       <TextField fx:id="itemQuantidade" layoutX="94.0" layoutY="34.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+   
+       <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+   
+       <Button layoutX="98.0" layoutY="81.0" onAction="#handleNovoItemAction" text="Adicionar" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+       
+       <Text fx:id="actiontarget" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+   </children>
+</AnchorPane>

@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eng.renan.clienteconvertidodesktop.controller.ProdutoController">
-  <Label text="Nome da loja:"
-        GridPane.columnIndex="0" GridPane.rowIndex="1"/>
- 
-    <TextField  fx:id="nome" 
-        GridPane.columnIndex="1" GridPane.rowIndex="1"/>
- 
-    <Label text="Descrição:"
-        GridPane.columnIndex="0" GridPane.rowIndex="2"/>
- 
-    <TextField  fx:id="desc" 
-        GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+<GridPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.eng.renan.clienteconvertidodesktop.controller.ProdutoController">
+   <children>
+     <Label text="Nome do Produto:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
     
-    <HBox spacing="10" alignment="bottom_right" 
-        GridPane.columnIndex="1" GridPane.rowIndex="4">
-        <Button text="Sign In"     
-        onAction="#handleSubmitButtonAction"/>
-    </HBox>
+       <TextField fx:id="nome" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    
+       <Label text="Descrição:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    
+       <TextField fx:id="desc" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+       
+       <Label text="Preço:" GridPane.rowIndex="6" />
+    
+       <TextField fx:id="preco" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+       
+       <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+   
+        <Button onAction="#handleSubmitButtonAction" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+        
+        <Text fx:id="actiontarget" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+   </children>
 
-<Text fx:id="actiontarget"
-       GridPane.columnIndex="1" GridPane.rowIndex="6"/>  
 </GridPane>

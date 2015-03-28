@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eng.renan.clienteconvertidodesktop.controller.VendaController">
+<VBox id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.eng.renan.clienteconvertidodesktop.controller.VendaController">
     <stylesheets>
-        <URL value="@/styles/venda.css"/>
+        <URL value="@/styles/venda.css" />
     </stylesheets>
-</AnchorPane>
+   <children>
+       
+       <Label text="Vendedor:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    
+       <ComboBox fx:id="vendedor" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    
+       <Label text="Turno:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    
+       <ComboBox fx:id="turno" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+       
+       <TableView fx:id="tableView" GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <columns>
+             <TableColumn fx:id="produtoNome" prefWidth="276.0" text="Produto">
+          </TableColumn>
+             <TableColumn fx:id="produtoValor" prefWidth="86.0" text="Valor">
+          </TableColumn>
+             <TableColumn fx:id="produtoQuantidade" prefWidth="92.0" text="Quantidade">
+          </TableColumn>
+              <TableColumn fx:id="produtoTotal" prefWidth="125.0" text="Total Produto">
+          </TableColumn>
+        </columns>    
+       </TableView>
+       
+        <Label text="Valor da Venda:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    
+       <TextField fx:id="valorVenda" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+       
+       <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4">
+          <children>
+              <Button onAction="#handleLancarVendaButtonAction" text="Lançar Venda" />
+          </children>
+       </HBox>
+   </children>
+     
+    
+    
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+</VBox>

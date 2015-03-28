@@ -12,8 +12,6 @@ import com.eng.renan.clienteconvertidodesktop.modelo.Vendedor;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,29 +35,29 @@ public class VendedorController implements Initializable {
     /**
      * Initializes the controller class.
      */
+     
+    LojaDao lojaDao = new LojaDao();
+    List<Loja> lojas = lojaDao.listaTodos();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        LojaDao lojaDao = new LojaDao();
-        List<Loja> lojas = lojaDao.listaTodos();
+       
         
-        ObservableList<String> options = 
-                FXCollections.observableArrayList(
-                    "Codigo",
-                    "Nome",
-                    "Cidade"
-                );
-
-        loja.setItems(options);
+        for(Loja l : lojas){
+            loja.getItems().add(l.getNome());
+        }
+        
     }  
     
-        @FXML 
+    @FXML 
     protected void handleSubmitButtonAction(ActionEvent event) {
-        Vendedor vendedor = new Vendedor();
-        vendedor.setNome(nome.getText());
-       // vendedor.setLoja(loja.getText());
-        VendedorDao dao = new VendedorDao();
-        dao.adiciona(vendedor);
-        actiontarget.setText("Loja cadastrada");
+       Vendedor vendedor = new Vendedor();
+       vendedor.setNome(nome.getText());
+       int lojaSelecionada = loja.getSelectionModel().getSelectedIndex();
+       vendedor.setLoja(lojas.get(lojaSelecionada));
+       VendedorDao dao = new VendedorDao();
+       dao.adiciona(vendedor);
+       actiontarget.setText("Loja cadastrada");
     }
     
 }

@@ -10,27 +10,24 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane id="GridPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eng.renan.clienteconvertidodesktop.controller.VendedorController">
+<GridPane id="GridPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.eng.renan.clienteconvertidodesktop.controller.VendedorController">
     <stylesheets>
-        <URL value="@/styles/vendedor.css"/>
+        <URL value="@/styles/vendedor.css" />
     </stylesheets>
-     <Label text="Nome da loja:"
-        GridPane.columnIndex="0" GridPane.rowIndex="1"/>
- 
-    <TextField  fx:id="nome" 
-        GridPane.columnIndex="1" GridPane.rowIndex="1"/>
- 
-    <Label text="Loja:"
-        GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+   <children>
+       <Label text="Nome do Vendedor:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    
+       <TextField fx:id="nome" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    
+       <Label text="Loja:" GridPane.rowIndex="3" />
+   
+       <ComboBox fx:id="loja" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+   
+       <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+   
+       <Button onAction="#handleSubmitButtonAction" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+       
+       <Text fx:id="actiontarget" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+   </children>
 
-      <ComboBox fx:id="loja"  GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-
-    <HBox spacing="10" alignment="bottom_right" 
-        GridPane.columnIndex="1" GridPane.rowIndex="4">
-        <Button text="Sign In"     
-        onAction="#handleSubmitButtonAction"/>
-    </HBox>
-
-<Text fx:id="actiontarget"
-       GridPane.columnIndex="1" GridPane.rowIndex="6"/>
 </GridPane>

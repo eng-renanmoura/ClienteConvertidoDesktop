@@ -14,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import static org.hibernate.criterion.Order.desc;
 
 /**
  * FXML Controller class

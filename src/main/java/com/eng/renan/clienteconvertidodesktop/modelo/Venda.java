@@ -9,8 +9,8 @@ package com.eng.renan.clienteconvertidodesktop.modelo;
  *
  * @author renanferreira
  */
+import com.eng.renan.clienteconvertidodesktop.util.TurnoEnum;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,56 +19,54 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.Pattern;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Venda {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
 
-	@Pattern(regexp = "\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}", message="CNPJ inválido")
-	private String cnpj;
+    @OneToMany(cascade=CascadeType.PERSIST, mappedBy="venda")
+    private List<Item> itens = new ArrayList<Item>();
 
-	@Temporal(TemporalType.DATE)
-	private Calendar data = Calendar.getInstance();
+    @OneToOne
+    private Vendedor vendedor;
+        
+    private TurnoEnum turno;
 
-	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="venda")
-	private List<Item> itens = new ArrayList<Item>();
+    public Long getId() {
+        return id;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public List<Item> getItens() {
+        return itens;
+    }
 
-	public String getCnpj() {
-		return cnpj;
-	}
+    public void setItens(List<Item> itens) {
+        this.itens = itens;
+    }
 
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
 
-	public Calendar getData() {
-		return data;
-	}
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
+    }
 
-	public void setData(Calendar data) {
-		this.data = data;
-	}
+    public TurnoEnum getTurno() {
+        return turno;
+    }
 
-	public List<Item> getItens() {
-		return itens;
-	}
-
-	public void setItens(List<Item> itens) {
-		this.itens = itens;
-	}
+    public void setTurno(TurnoEnum turno) {
+        this.turno = turno;
+    }
+        
 
 }
