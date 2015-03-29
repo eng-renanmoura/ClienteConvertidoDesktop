@@ -24,4 +24,15 @@ public enum TurnoEnum {
     public String getValue() {
         return value;
     }  
+    
+    public static TurnoEnum fromString(String text) {
+    if (text != null) {
+      for (TurnoEnum b : TurnoEnum.values()) {
+        if (text.equalsIgnoreCase(b.value)) {
+          return b;
+        }
+      }
+    }
+    return null;
+  }
 }

@@ -71,11 +71,19 @@ public class Item {
 	public void setVenda(Venda venda) {
 		this.venda = venda;
 	}
-	
+        	
 	public Double getTotal() {
 		if (quantidade != null && valorUnitario != null)
 			return quantidade * valorUnitario;
 		else
 			return null;
 	}
+        
+        public String getProdutoNomeProperty(){
+            return produto.getNome();
+        }
+        
+        public Double getProdutoPrecoProperty(){
+            return produto.getPreco();
+        }
 }
