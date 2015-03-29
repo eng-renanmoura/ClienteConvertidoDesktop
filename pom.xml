@@ -16,10 +16,30 @@
 
     <organization>
         <!-- Used as the 'Vendor' for JNLP generation -->
-        <name>Your Organisation</name>
+        <name>Sistema de Clientes Convertidos</name>
     </organization>
 
     <dependencies>
+        
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>5.0.1</version>
+            <exclusions>
+             <exclusion>
+                 <groupId>bouncycastle</groupId>
+                 <artifactId>bcmail-jdk14</artifactId>
+             </exclusion>
+             <exclusion>
+                 <groupId>bouncycastle</groupId>
+                 <artifactId>bcprov-jdk14</artifactId>
+             </exclusion>
+             <exclusion>
+                 <groupId>bouncycastle</groupId>
+	         <artifactId>bctsp-jdk14</artifactId>
+             </exclusion>
+            </exclusions>
+        </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
@@ -161,6 +181,34 @@
                     </additionalClasspathElements>
                 </configuration>
             </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                   <execution>
+                      <phase>package</phase>
+                         <goals>
+                            <goal>shade</goal>
+                         </goals>
+                   </execution>
+                </executions>
+                <configuration>
+                   <finalName>${project.artifactId}-${project.version}-uber</finalName>
+                   <filters>
+                      <filter>
+                         <artifact>*:*</artifact>
+                            <excludes>
+                               <exclude>META-INF/*.SF</exclude>
+                               <exclude>META-INF/*.DSA</exclude>
+                               <exclude>META-INF/*.RSA</exclude>
+                            </excludes>
+                         </filter>
+                      </filters>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 

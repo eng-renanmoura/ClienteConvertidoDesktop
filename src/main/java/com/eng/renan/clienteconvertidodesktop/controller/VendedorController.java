@@ -41,9 +41,10 @@ public class VendedorController implements Initializable {
     
     @FXML 
     protected void handleSubmitButtonAction(ActionEvent event) {
+       VendedorDao dao = new VendedorDao();
        Vendedor vendedor = new Vendedor();
        vendedor.setNome(nome.getText());
-       VendedorDao dao = new VendedorDao();
+       vendedor.setAtivo(true);
        dao.adiciona(vendedor);
        actiontarget.setText("Vendedor cadastrado");
     }

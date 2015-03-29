@@ -130,7 +130,7 @@ public class PrincipalController implements Initializable {
  public void initialize(java.net.URL arg0, ResourceBundle arg1) {
    menuBar.setFocusTraversable(true);
    InicializarTabelaVendedor();
-
+   
    menuBar.focusedProperty().addListener(new ChangeListener<Boolean>()
     {
     @Override

@@ -12,7 +12,6 @@ package com.eng.renan.clienteconvertidodesktop.util;
 import com.eng.renan.clienteconvertidodesktop.jdbc.ConnectionFactory;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -21,7 +20,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
  
-/*
+
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -31,15 +30,15 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
- */
+ 
 
 public class ReportUtil {
  
     public static final String TEMPLATE = "/reports/usuarios.jrxml";
-    /* 
-    public StreamedContent geraRelatorio(HashMap parametrosRelatorio) throws Exception {
+    
+    public void geraRelatorio(HashMap parametrosRelatorio) throws Exception {
          
-        StreamedContent arquivoRetorno = null;
+      //  StreamedContent arquivoRetorno = null;
  
         try {
             Connection conexao = ConnectionFactory.getVendaConnection();
@@ -56,15 +55,15 @@ public class ReportUtil {
  
             ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
              
-            arquivoRetorno = new DefaultStreamedContent(bais, "pdf", "users.pdf");
+           // arquivoRetorno = new DefaultStreamedContent(bais, "pdf", "users.pdf");
              
         } catch (JRException e) {
             e.printStackTrace();
             throw new Exception("Não foi possível gerar o relatório.", e);
         } 
-        return arquivoRetorno;
+       // return arquivoRetorno;
     }
- */
+ 
     private Connection getConexao() throws Exception {
         java.sql.Connection conexao = null;
         try {
