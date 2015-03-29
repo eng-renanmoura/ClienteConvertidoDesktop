@@ -5,9 +5,7 @@
  */
 package com.eng.renan.clienteconvertidodesktop.controller;
 
-import com.eng.renan.clienteconvertidodesktop.dao.LojaDao;
 import com.eng.renan.clienteconvertidodesktop.dao.VendedorDao;
-import com.eng.renan.clienteconvertidodesktop.modelo.Loja;
 import com.eng.renan.clienteconvertidodesktop.modelo.Vendedor;
 import java.net.URL;
 import java.util.List;
@@ -35,17 +33,9 @@ public class VendedorController implements Initializable {
     /**
      * Initializes the controller class.
      */
-     
-    LojaDao lojaDao = new LojaDao();
-    List<Loja> lojas = lojaDao.listaTodos();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
-        
-        for(Loja l : lojas){
-            loja.getItems().add(l.getNome());
-        }
         
     }  
     
@@ -53,8 +43,6 @@ public class VendedorController implements Initializable {
     protected void handleSubmitButtonAction(ActionEvent event) {
        Vendedor vendedor = new Vendedor();
        vendedor.setNome(nome.getText());
-       int lojaSelecionada = loja.getSelectionModel().getSelectedIndex();
-       vendedor.setLoja(lojas.get(lojaSelecionada));
        VendedorDao dao = new VendedorDao();
        dao.adiciona(vendedor);
        actiontarget.setText("Loja cadastrada");

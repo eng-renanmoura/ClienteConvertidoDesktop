@@ -20,13 +20,10 @@ import javax.persistence.ManyToOne;
 public class Vendedor implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    
+    private Long id; 
     private String nome;
+    private Boolean ativo;
     
-    @ManyToOne
-    private Loja loja;
-
     public Long getId() {
         return id;
     }
@@ -43,12 +40,12 @@ public class Vendedor implements Serializable {
         this.nome = nome;
     }
 
-    public Loja getLoja() {
-        return loja;
+    public Boolean getAtivo() {
+        return ativo;
     }
 
-    public void setLoja(Loja loja) {
-        this.loja = loja;
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
-
+      
 }

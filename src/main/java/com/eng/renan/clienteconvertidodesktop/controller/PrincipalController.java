@@ -49,20 +49,6 @@ public class PrincipalController implements Initializable {
    * @param event Event on "About" menu item.
    */
   @FXML
-  private void handleLojaAction(final ActionEvent event)
-  throws Exception{
-     Stage stage = new Stage();
-     Parent root = FXMLLoader.load(getClass().getResource("/fxml/Loja.fxml"));
-        
-     Scene scene = new Scene(root);
-     scene.getStylesheets().add("/styles/Styles.css");
-        
-     stage.setTitle("Cadastro de Loja");
-     stage.setScene(scene);
-     stage.show();
-  }
-  
-  @FXML
   private void handleProdutoAction(final ActionEvent event)
   throws Exception{
           Stage stage = new Stage();

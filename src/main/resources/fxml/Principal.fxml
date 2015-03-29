@@ -22,7 +22,6 @@
          </Menu>
          <Menu text="Cadastro">
             <items>
-               <MenuItem text="Loja"  onAction="#handleLojaAction"/>
                <MenuItem text="Produto"  onAction="#handleProdutoAction"/>
                <MenuItem text="Vendedor"  onAction="#handleVendedorAction"/>
             </items>
