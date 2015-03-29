@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -141,7 +143,26 @@ public class PrincipalController implements Initializable {
  @Override
  public void initialize(java.net.URL arg0, ResourceBundle arg1) {
    menuBar.setFocusTraversable(true);
-  
+   InicializarTabelaVendedor();
+
+   menuBar.focusedProperty().addListener(new ChangeListener<Boolean>()
+    {
+    @Override
+    public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+    {
+        if (newPropertyValue)
+        {
+            InicializarTabelaVendedor();
+        }
+       // else
+       // {
+       //     System.out.println("Textfield out focus");
+       // }
+    }
+   });
+ }   
+ 
+ public void InicializarTabelaVendedor(){
    VendedorNome.setCellValueFactory(new PropertyValueFactory<Vendedor, String>("nome"));
    VendedorAtivo.setCellValueFactory(new PropertyValueFactory<Vendedor, String>("id"));
 
@@ -169,8 +190,7 @@ public class PrincipalController implements Initializable {
             }
         }
     });
-  
- }   
+ }
  
   private List<Vendedor> parseVendedorList(){
         VendedorDao vendedorDao = new VendedorDao();
