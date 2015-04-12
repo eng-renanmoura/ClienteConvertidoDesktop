@@ -13,8 +13,6 @@ import com.eng.renan.clienteconvertidodesktop.modelo.Produto;
 import com.eng.renan.clienteconvertidodesktop.modelo.Venda;
 import com.eng.renan.clienteconvertidodesktop.modelo.Vendedor;
 import com.eng.renan.clienteconvertidodesktop.util.TurnoEnum;
-import com.mysql.fabric.xmlrpc.Client;
-import static com.oracle.jrockit.jfr.ContentType.Address;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -27,14 +25,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Callback;
 
 /**
  * FXML Controller class
