@@ -29,7 +29,7 @@
     
        <Label layoutX="9.0" layoutY="39.0" text="Quantidade: " GridPane.rowIndex="3" />
    
-       <TextField fx:id="itemQuantidade" layoutX="94.0" layoutY="34.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+       <TextField fx:id="itemQuantidade" layoutX="94.0" layoutY="34.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="131.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
    
        <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4" />
    

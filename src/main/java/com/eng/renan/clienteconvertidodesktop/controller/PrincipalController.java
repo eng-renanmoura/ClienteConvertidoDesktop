@@ -49,6 +49,20 @@ public class PrincipalController implements Initializable {
    * @param event Event on "About" menu item.
    */
   @FXML
+  private void handleRelatorioAction(final ActionEvent event)
+  throws Exception{
+          Stage stage = new Stage();
+     Parent root = FXMLLoader.load(getClass().getResource("/fxml/Relatorio.fxml"));
+        
+     Scene scene = new Scene(root);
+     scene.getStylesheets().add("/styles/Styles.css");
+        
+     stage.setTitle("Relatórios");
+     stage.setScene(scene);
+     stage.show();
+  }
+  
+  @FXML
   private void handleProdutoAction(final ActionEvent event)
   throws Exception{
           Stage stage = new Stage();

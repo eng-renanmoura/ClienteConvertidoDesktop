@@ -15,7 +15,7 @@
             <items>
                <MenuItem text="Lançar Venda"  onAction="#handleVendaAction"/>
                <MenuItem text="Próximo Vendedor"  onAction="#handleAboutAction"/>
-               <MenuItem text="Relatório"  onAction="#handleAboutAction"/>
+               <MenuItem text="Relatório"  onAction="#handleRelatorioAction"/>
                <SeparatorMenuItem  />
                <MenuItem text="Exit"  onAction="#handleAboutAction"/>
             </items>
