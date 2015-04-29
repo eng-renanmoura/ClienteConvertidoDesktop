@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.MenuBar;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
@@ -27,34 +27,34 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
  */
 public class RelatorioController implements Initializable {
 
-    @FXML private MenuBar menuBar;
+  @FXML private Button botaoRelatorio;
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+  @Override
+  public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+  }    
     
-    @FXML
-    private void handleRelatorioAction(final ActionEvent event)
+  @FXML
+  private void handleRelatorioAction(final ActionEvent event)
     throws Exception{
         export();
   }
     
   private void export() {
 
-    Report report = new Report("reports/Example.jasper", menuBar.getScene().getWindow());
+    Report report = new Report("reports/Example.jasper", botaoRelatorio.getScene().getWindow());
     report.export("Export report", "Report " + ".pdf", getReportParams(), new JRBeanCollectionDataSource(getReportData()));
   }
 
   private void print() {
-    Report report = new Report("reports/Example.jasper", menuBar.getScene().getWindow());
+    Report report = new Report("reports/Example.jasper", botaoRelatorio.getScene().getWindow());
     report.print(getReportParams(), new JRBeanCollectionDataSource(getReportData()));
   }
 
   private void printPreview() {
-    Report report = new Report("reports/Example.jasper", menuBar.getScene().getWindow());
+    Report report = new Report("reports/Example.jasper", botaoRelatorio.getScene().getWindow());
     report.printPreview(getReportParams(), new JRBeanCollectionDataSource(getReportData()));
   }
     
