@@ -46,6 +46,7 @@ public class VendedorController implements Initializable {
        vendedor.setNome(nome.getText());
        vendedor.setAtivo(true);
        dao.adiciona(vendedor);
+       nome.clear();
        actiontarget.setText("Vendedor cadastrado");
     }
     

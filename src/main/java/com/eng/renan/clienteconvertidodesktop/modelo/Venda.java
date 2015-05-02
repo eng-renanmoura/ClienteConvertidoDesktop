@@ -11,6 +11,8 @@ package com.eng.renan.clienteconvertidodesktop.modelo;
  */
 import com.eng.renan.clienteconvertidodesktop.util.TurnoEnum;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -35,6 +37,10 @@ public class Venda {
     private Vendedor vendedor;
         
     private TurnoEnum turno;
+    
+    private Calendar dataDaVenda;  
+    
+    private Calendar tempoDaVenda;
 
     public Long getId() {
         return id;
@@ -67,6 +73,21 @@ public class Venda {
     public void setTurno(TurnoEnum turno) {
         this.turno = turno;
     }
-        
+    
+    public Calendar getDataDaVenda() {
+        return dataDaVenda;
+    }
+
+    public void setDataDaVenda(Calendar dataDaVenda) {
+        this.dataDaVenda = dataDaVenda;
+    }
+
+    public Calendar getTempoDaVenda() {
+        return tempoDaVenda;
+    }
+
+    public void setTempoDaVenda(Calendar tempoDaVenda) {
+        this.tempoDaVenda = tempoDaVenda;
+    }
 
 }

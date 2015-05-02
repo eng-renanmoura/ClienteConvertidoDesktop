@@ -15,9 +15,16 @@ import com.eng.renan.clienteconvertidodesktop.modelo.Vendedor;
 import com.eng.renan.clienteconvertidodesktop.util.TurnoEnum;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -50,6 +57,8 @@ public class VendaController implements Initializable {
     
     @FXML private ComboBox<String> itemProduto;
     @FXML private TextField itemQuantidade;
+     @FXML private TextField tempo;
+    
     
     /**
      * Initializes the controller class.
@@ -154,7 +163,8 @@ public class VendaController implements Initializable {
         int vendedorSelecionado = vendedor.getSelectionModel().getSelectedIndex();
         venda.setVendedor(vendedores.get(vendedorSelecionado));
        // vendedor.setLoja(loja.getText());
-        
+        venda.setDataDaVenda(Calendar.getInstance());
+        venda.setTempoDaVenda(calendario);
         dao.adiciona(venda);
         //actiontarget.setText("Loja cadastrada");
     }
@@ -183,4 +193,30 @@ public class VendaController implements Initializable {
             itemProduto.getItems().add(p.getNome());
         }
     }
+    
+    Calendar calendario;
+     Timer cronometro;
+     DateFormat formato;
+    public void iniciaCronometro(){
+    	calendario = Calendar.getInstance();  
+        cronometro = new Timer();  
+        formato = new SimpleDateFormat("HH:mm:ss"); 
+        
+        calendario.set(0, 0, 0, 00, 00, 00);
+        
+        TimerTask tarefa = new TimerTask() {  
+  
+           @Override 
+            public void run() { 
+            
+            calendario.add(Calendar.SECOND, 1);  
+            tempo.setText(formato.format(calendario.getTime()));
+            
+            }  
+        };  
+        cronometro.scheduleAtFixedRate(tarefa, 0, 1000);  
+        this.cronometro = null; 
+    }
 }
+    
+    

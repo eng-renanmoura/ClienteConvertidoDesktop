@@ -47,6 +47,9 @@ public class ProdutoController implements Initializable {
         produto.setPreco(Double.parseDouble(preco.getText()));
         ProdutoDao dao = new ProdutoDao();
         dao.adiciona(produto);
+        nome.clear();
+        desc.clear();
+        preco.clear();
         actiontarget.setText("Produto cadastrado");
     }
 }

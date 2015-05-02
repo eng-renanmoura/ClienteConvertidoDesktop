@@ -34,6 +34,7 @@
           
              <ComboBox fx:id="turno" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Tempo:" GridPane.rowIndex="2" />
+            <TextField fx:id="tempo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="131.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Group>
@@ -111,7 +112,7 @@
              <TextField fx:id="valorVenda" GridPane.columnIndex="3" />
               <Button onAction="#handleLancarVendaButtonAction" text="Lançar Venda" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Button mnemonicParsing="false" text="Parar Venda" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" text="Iniciar Venda" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button onAction="#iniciaCronometro" text="Iniciar Venda" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
        
