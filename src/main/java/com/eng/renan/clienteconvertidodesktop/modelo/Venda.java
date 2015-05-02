@@ -9,10 +9,10 @@ package com.eng.renan.clienteconvertidodesktop.modelo;
  *
  * @author renanferreira
  */
+import com.eng.renan.clienteconvertidodesktop.util.SexoEnum;
 import com.eng.renan.clienteconvertidodesktop.util.TurnoEnum;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -22,6 +22,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 @Entity
 public class Venda {
@@ -29,18 +30,17 @@ public class Venda {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-
     @OneToMany(cascade=CascadeType.PERSIST, mappedBy="venda")
     private List<Item> itens = new ArrayList<Item>();
-
     @OneToOne
-    private Vendedor vendedor;
-        
+    private Vendedor vendedor;       
     private TurnoEnum turno;
-    
-    private Calendar dataDaVenda;  
-    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Calendar dataDaVenda;   
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar tempoDaVenda;
+    private SexoEnum sexoCliente;
+    private Double valorTotalDaVenda;
 
     public Long getId() {
         return id;
@@ -88,6 +88,22 @@ public class Venda {
 
     public void setTempoDaVenda(Calendar tempoDaVenda) {
         this.tempoDaVenda = tempoDaVenda;
+    }
+
+    public SexoEnum getSexoCliente() {
+        return sexoCliente;
+    }
+
+    public void setSexoCliente(SexoEnum sexoCliente) {
+        this.sexoCliente = sexoCliente;
+    }
+
+    public Double getValorTotalDaVenda() {
+        return valorTotalDaVenda;
+    }
+
+    public void setValorTotalDaVenda(Double valorTotalDaVenda) {
+        this.valorTotalDaVenda = valorTotalDaVenda;
     }
 
 }

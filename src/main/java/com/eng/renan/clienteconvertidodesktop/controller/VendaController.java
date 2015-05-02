@@ -13,15 +13,14 @@ import com.eng.renan.clienteconvertidodesktop.modelo.Produto;
 import com.eng.renan.clienteconvertidodesktop.modelo.Venda;
 import com.eng.renan.clienteconvertidodesktop.modelo.Vendedor;
 import com.eng.renan.clienteconvertidodesktop.util.TurnoEnum;
+import com.eng.renan.clienteconvertidodesktop.util.SexoEnum;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -47,7 +46,8 @@ public class VendaController implements Initializable {
 
     @FXML private ComboBox<String>  vendedor;
     @FXML private ComboBox<String> turno;
-    @FXML private TextField ValorVenda;
+    @FXML private ComboBox<String> clienteSexo;
+    @FXML private TextField valorVenda;
     
     @FXML private TableView<Item> tableView;
     @FXML private TableColumn<Item, String> produtoNome;
@@ -57,12 +57,16 @@ public class VendaController implements Initializable {
     
     @FXML private ComboBox<String> itemProduto;
     @FXML private TextField itemQuantidade;
-     @FXML private TextField tempo;
+    @FXML private TextField tempo;
     
+    @FXML private TableView<Item> tableViewFalta;
+    @FXML private TableColumn<Item, String> produtoFaltaNome;
+    @FXML private ComboBox<String> itemProdutoFalta;
     
     /**
      * Initializes the controller class.
      */
+    private List<Item> itensEmFalta = new ArrayList<>();
     
     private List<Item> itens = new ArrayList<>();
     
@@ -72,6 +76,7 @@ public class VendaController implements Initializable {
     
     private ProdutoDao produtoDao = new ProdutoDao();
     private List<Produto> produtos = produtoDao.listaTodos();
+    private List<Produto> produtosEmFalta = produtoDao.listaTodos();
     
     public Venda getVenda(){
         return this.venda;
@@ -80,18 +85,20 @@ public class VendaController implements Initializable {
     public List<Item> getItens() {
         return itens;
     }
-    
+
+    public List<Item> getItensEmFalta() {
+        return itensEmFalta;
+    }
+  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      // if(itemProduto == null){
         InicializarComboVendedor();
         InicializarComboTurno();
+        InicializarComboClienteSexo();
         InicializarItens();
-      // }
-      //  if(itemProduto != null){
-            InicializarComboProduto();
-      //  }
-                 
+        InicializarItensEmFalta();
+        InicializarComboProduto();
+        InicializarComboProdutoEmFalta();             
     }   
     
     public VendaController getVendaController(){
@@ -129,17 +136,35 @@ public class VendaController implements Initializable {
         
         tableView.setEditable(true);
 
-//titleCol.setCellFactory(TextFieldTableCell.forTableColumn());
-//titleCol.setOnEditCommit(new EventHandler<CellEditEvent>() {
-				
-  //  @Override
-   // public void handle(CellEditEvent t) {
-					
-  //      ((Book) t.getTableView().getItems().get(
-  //          t.getTablePosition().getRow())).setTitle(t.getNewValue());
-   // }
-//});
+    }
+    
+    public void InicializarItensEmFalta(){
 
+        produtoFaltaNome.setCellValueFactory(new PropertyValueFactory<Item, String>("produtoNomeProperty"));
+
+        tableViewFalta.getItems().setAll(itensEmFalta);
+   
+        tableViewFalta.setOnMouseClicked(new EventHandler<MouseEvent>(){
+         @Override 
+          public void handle(MouseEvent event) {
+            if (event.getClickCount() == 2) {
+                if(tableViewFalta.getSelectionModel().getSelectedItem() != null) {    
+                    TableView.TableViewSelectionModel selectionModel = tableViewFalta.getSelectionModel();
+
+                   // vendedor = (Vendedor) selectionModel.getSelectedItem();
+                    //System.out.println(vendedor.getNome());
+                }else{
+                    try {                 
+                       
+                    } catch (Exception ex) {
+                        Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+          }
+        });
+        
+        tableView.setEditable(true);
 
     }
     
@@ -155,16 +180,25 @@ public class VendaController implements Initializable {
         }
     }
     
+    private void InicializarComboClienteSexo(){
+        for(SexoEnum t : SexoEnum.values()){
+            clienteSexo.getItems().add(t.getValue());
+        }
+    }
+    
     @FXML 
     protected void handleLancarVendaButtonAction(ActionEvent event) {
         VendaDao dao = new VendaDao();
+        this.getItens().addAll(this.getItensEmFalta());
         venda.setItens(this.getItens());
         venda.setTurno(TurnoEnum.fromString(turno.getSelectionModel().getSelectedItem()));
+        venda.setSexoCliente(SexoEnum.fromString(clienteSexo.getSelectionModel().getSelectedItem()));
         int vendedorSelecionado = vendedor.getSelectionModel().getSelectedIndex();
         venda.setVendedor(vendedores.get(vendedorSelecionado));
        // vendedor.setLoja(loja.getText());
         venda.setDataDaVenda(Calendar.getInstance());
         venda.setTempoDaVenda(calendario);
+        venda.setValorTotalDaVenda(Double.parseDouble(valorVenda.getText()));
         dao.adiciona(venda);
         //actiontarget.setText("Loja cadastrada");
     }
@@ -176,21 +210,47 @@ public class VendaController implements Initializable {
   
   @FXML 
    protected void handleNovoItemAction(ActionEvent event) throws IOException {
-       
+        Double totalDaVenda = 0.0;
         Item item = new Item();
         int produtoSelecionado = itemProduto.getSelectionModel().getSelectedIndex();
         item.setProduto(produtos.get(produtoSelecionado));
         item.setQuantidade(new Integer(itemQuantidade.getText()));
         item.setValorUnitario(produtos.get(produtoSelecionado).getPreco());
         item.setVenda(this.getVenda());
+        item.setEmFalta(Boolean.FALSE);
         this.getItens().add(item);
         this.InicializarItens();
+        for(Item i : this.getItens()){
+            totalDaVenda += i.getTotal();
+        }
+        valorVenda.setText(totalDaVenda.toString());
+        
+   }
+   
+     @FXML 
+   protected void handleNovoItemFaltaAction(ActionEvent event) throws IOException {
+        
+        Item item = new Item();
+        int produtoSelecionado = itemProdutoFalta.getSelectionModel().getSelectedIndex();
+        item.setProduto(produtosEmFalta.get(produtoSelecionado));
+        item.setQuantidade(0);
+        item.setValorUnitario(produtosEmFalta.get(produtoSelecionado).getPreco());
+        item.setVenda(this.getVenda());
+        item.setEmFalta(Boolean.TRUE);
+        this.getItensEmFalta().add(item);
+        this.InicializarItensEmFalta();
         
    }
    
     private void InicializarComboProduto(){
         for(Produto p : produtos){
             itemProduto.getItems().add(p.getNome());
+        }
+    }
+    
+    private void InicializarComboProdutoEmFalta(){
+        for(Produto p : produtos){
+            itemProdutoFalta.getItems().add(p.getNome());
         }
     }
     

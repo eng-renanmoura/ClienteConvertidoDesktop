@@ -21,16 +21,13 @@ public class Item {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
 	@ManyToOne
 	private Venda venda;
-
 	@ManyToOne
 	private Produto produto;
-
 	private Integer quantidade;
-	
 	private Double valorUnitario;
+        private Boolean emFalta;
 
 	public Long getId() {
 		return id;
@@ -86,4 +83,13 @@ public class Item {
         public Double getProdutoPrecoProperty(){
             return produto.getPreco();
         }
+
+        public Boolean getEmFalta() {
+            return emFalta;
+        }
+
+        public void setEmFalta(Boolean emFalta) {
+            this.emFalta = emFalta;
+        }   
+        
 }
