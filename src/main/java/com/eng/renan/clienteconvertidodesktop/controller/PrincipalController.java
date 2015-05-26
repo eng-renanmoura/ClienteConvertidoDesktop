@@ -63,7 +63,7 @@ public class PrincipalController implements Initializable {
   }
   
   @FXML
-  private void handleProdutoAction(final ActionEvent event)
+  public void handleProdutoAction(final ActionEvent event)
   throws Exception{
           Stage stage = new Stage();
      Parent root = FXMLLoader.load(getClass().getResource("/fxml/Produto.fxml"));
@@ -77,7 +77,7 @@ public class PrincipalController implements Initializable {
   }
   
     @FXML
-  private void handleVendedorAction(final ActionEvent event)
+  public void handleVendedorAction(final ActionEvent event)
   throws Exception{
           Stage stage = new Stage();
      Parent root = FXMLLoader.load(getClass().getResource("/fxml/Vendedor.fxml"));
@@ -91,7 +91,7 @@ public class PrincipalController implements Initializable {
   }
   
   @FXML
-  private void handleAboutAction(final ActionEvent event)
+  public void handleAboutAction(final ActionEvent event)
   throws Exception{
       Stage stage = new Stage();
      Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
@@ -105,7 +105,7 @@ public class PrincipalController implements Initializable {
   }
   
   @FXML
-   private void handleVendaAction(final ActionEvent event) throws Exception{
+  public void handleVendaAction(final ActionEvent event) throws Exception{
      
         provideVendaFunctionality();
   }
